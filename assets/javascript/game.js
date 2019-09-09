@@ -18,8 +18,9 @@ var words = [
         //in random word create a for loop that makes an underlined spot for each letter in word
         //this needs to not trigger unless game is over or reset button is pressed
         var z = Math.floor(Math.random() * words.length);
-        var blanks = []
-        chosenWord = words[z]
+        var blanks = [];
+        var wrongLetters = [];
+        var chosenWord = words[z];
         console.log(chosenWord);
         
         //used to create the blank spots
@@ -31,28 +32,38 @@ var words = [
                 blanks.push("_");
             }
             $("#blank").text(blanks);
-            console.log(blanks);
+            //console.log(blanks);
             }
-            
+            //console.log(userGuess);
+            debugger;
             for (var a = 0; a < letters.length; a++){
             //if (userGuess === "a" ||userGuess === "b" ||userGuess === "c" ||userGuess === "d" ||userGuess === "e" ||userGuess === "f" ||userGuess === "g" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "h" ||userGuess === "i" ||userGuess === "j" ||userGuess === "k" ||userGuess === "l" ||userGuess === "m" ||userGuess === "n" ||userGuess === "o" ||userGuess === "p" ||userGuess === "q" ||userGuess === "r" ||userGuess === "s" ||userGuess === "t" ||userGuess === "u" ||userGuess === "v" ||userGuess === "w" ||userGuess === "x" ||userGuess === "y" ||userGuess === "z"){
                 //this for loop runs through alphabet to check user enty to the allowed chars
-                if (userGuess === letters[a]){
+                if (userGuess === letters[a] && counter > 0){
                     console.log(letters[a]);
                     for (var i = 0; i < chosenWord.length; i++ ) {
-                        if (userGuess = chosenWord.charAt[i]){
-                            console.log()
-                            blanks[i] = event.key;
-                            $("#blanks").text(blanks[i]);
+                        var res = chosenWord.charAt(i);
+                        if (userGuess === res){
+                            blanks[i] = userGuess;
+                            $("#blank").text(blanks);
+                            console.log(blanks);
+                            console.log(chosenWord);
                             counter =- 1;
+                            console.log(counter)
                             
                         }
                         else {
                             //push the letter to an array that will display the used letters
-
-                        }
+                            wrongLetters.push(userGuess);
+                            $("lettersUsed").text(wrongLetters);
+                            counter =- 1;
+                        } 
                         //this removes the guessed index from the array, whether correct or wrong so it cant be used again
                         letters.splice(a)
+                        console.log(letters)
+                    }
+                    else if() {
+                        
                     }
                 }
             }
