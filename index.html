@@ -5,19 +5,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
+        <!-- style sheets, first resets page to basic -->
         <link rel="stylesheet" href="./assets/css/reset.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="./assets/css/style.css">
+        <!-- java script -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="assets/javascript/game.js"></script>
     </head>
     <body>
         <div class="container">
-            <div id="getStarted">Press the 'Spacebar' to get started!</div>
-            <div id="blank"></div>
-            <div id="wins">Wins:</div>
-            <div id="losses">Losses:</div>
-            <div id="guesses">Guesses Left:</div>
-            <div id="lettersUsed">Letters Already Guessed:</div>
+            <div class="row ">
+                This will be the game title
+            </div>
+            <div class="row">
+                <div class="col">
+                    *Picture of hangman
+                </div> 
+                <div class="col">
+                    <div id="getStarted" class="">Press the 'Spacebar' to get started!</div>
+                    <div id="blank"></div>
+                    <div id="wins">Wins:</div>
+                    <div id="losses">Losses:</div>
+                    <div id="guesses">Guesses Left:</div>
+                    <div>Letters Already Guessed</div>
+                    <div id="lettersUsed"></div>
+                </div>
+            </div>
+            <div class="row">
+                *instructions and other stuff can go here
+            </div>
         </div>    
     </body>
 </html>
