@@ -17,9 +17,10 @@ var words = [
         var blanks = [];
         var wrongLetters = [];
         var chosenWordLetters = [];
+        var chosenWord = "";
         
             //used to reset the game after it has run an initial time
-            function reset() {
+        function reset() {
             //randomize word selected by the computer
             //in random word create a for loop that makes an underlined spot for each letter in word
 
@@ -34,69 +35,89 @@ var words = [
             wrongLetters = [];
             blanks = [];
             letters = [];
+            // this will reset the array, the letters are taken out to avoid pressing the same letters multiple times
+            var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+
             //this will make it so the game can run again, game stops when true
             gameStatus = false;
-            }
+            //initialized the game to start after it has been reset
+            gameStart();
+        }
 
             //this initiates the field for the game to start
+        function gameStart() {
+            //this needs to not trigger unless game is over or reset button is pressed
+            var z = Math.floor(Math.random() * words.length);
+            chosenWord = words[z];
+            console.log(chosenWord);
+            //this will make the letters into an array for later comparison
+            chosenWordLetters = chosenWord.split('');
+
+            guessCounter = 13;
+            wrongLetters = [];
+            blanks = [];
+            letters = [];
+            // this will reset the array, the letters are taken out to avoid pressing the same letters multiple times
+            var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+           
+            //this will run through the length of the random word and populate blanks
+            for (var x = 0; x < chosenWord.length; x++){
+                blanks.push("_");
+                $("#blank").text(blanks);
+            }
+            //changes the reset guesses back to starting value
+            $("guesses").text(guessCounter);
+            //updates the wins/losses to current total
+            $("wins").text("Wins:" + wins);
+            $("losses").text("Losses:" + losses);
+
+            $("lettersUsed").text(letters);
+        }
+
+        for (var a = 0; a < letters.length; a++){
+            //this for loop runs through alphabet to check user enty to the allowed chars
+            if (userGuess === letters[a] && guessCounter > 0){
+                for (var i = 0; i < chosenWord.length; i++ ) {
+                    var res = chosenWord.charAt(i);
+                    if (userGuess === res){
+                        blanks[i] = userGuess;
+                        $("#blank").text(blanks);
+                        console.log(chosenWord);
+                    }
+                    //this removes the guessed index from the array, whether correct or wrong so it cant be used again
+                    // letters.splice(userGuess);
+                    // console.log(letters)
+                }
+                
+            } 
+            //might need to add condition that chosenWord is not equal to the blanks
+            else if(guessCounter === 0) {
+                losses += 1;
+                $("#losses").text("Losses: " + losses);
+
+                //need to make the game reset to right after the document ready function begins
+
+            }
             
-
-
-
+            // else if(userGuess != res){
+            //     //push the letter to an array that will display the used letters
+            //     wrongLetters.push(userGuess);
+            //     $("#lettersUsed").text(wrongLetters);
+            //     guessCounter -= 1;
+            //     $("#guesses").text("Guesses left:" + guessCounter)
+            //     break;
+            // } 
+        }
+        
+        gameStart();
         //used to create the blank spots
         document.onkeyup = function(event){
             var userGuess = event.key;
-            
-            //only runs if space bar is hit and blank array is empty
-            if (userGuess === " " && blanks[0] === ""){
-            for (var x = 0; x < chosenWord.length; x++){
-                blanks.push("_");
-            }
-            $("#blank").text(blanks);
-            //console.log(blanks);
-            }
-            //console.log(userGuess);
+            guessCounter -= 1;
+            $("guesses").text(guessCounter);
             debugger;
-            for (var a = 0; a < letters.length; a++){
-            //if (userGuess === "a" ||userGuess === "b" ||userGuess === "c" ||userGuess === "d" ||userGuess === "e" ||userGuess === "f" ||userGuess === "g" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "a" ||userGuess === "h" ||userGuess === "i" ||userGuess === "j" ||userGuess === "k" ||userGuess === "l" ||userGuess === "m" ||userGuess === "n" ||userGuess === "o" ||userGuess === "p" ||userGuess === "q" ||userGuess === "r" ||userGuess === "s" ||userGuess === "t" ||userGuess === "u" ||userGuess === "v" ||userGuess === "w" ||userGuess === "x" ||userGuess === "y" ||userGuess === "z"){
-                //this for loop runs through alphabet to check user enty to the allowed chars
-                if (userGuess != " " && userGuess === letters[a] && guessCounter > 0){
-                    console.log(letters[a]);
-                    for (var i = 0; i < chosenWord.length; i++ ) {
-                        var res = chosenWord.charAt(i);
-                        if (userGuess === res){
-                            blanks[i] = userGuess;
-                            $("#blank").text(blanks);
-                            console.log(chosenWord);
-                            guessCounter -= 1;
-                            $("#guesses").text("Guesses left:" + guessCounter)
-                            console.log(guessCounter)
-                            wrongLetters.push(userGuess);
-                            $("#lettersUsed").text(wrongLetters);
-                            break;
-                        }
-                        else if(userGuess != res){
-                            //push the letter to an array that will display the used letters
-                            wrongLetters.push(userGuess);
-                            $("#lettersUsed").text(wrongLetters);
-                            guessCounter =- 1;
-                            $("#guesses").text("Guesses left:" + guessCounter)
-                        } 
-                        //this removes the guessed index from the array, whether correct or wrong so it cant be used again
-                        letters.splice(a)
-                        console.log(letters)
-                    }
-                    
-                } 
-                //might need to add condition that chosenWord is not equal to the blanks
-                else if(guessCounter === 0) {
-                    losses =+ 1;
-                    $("#losses").text("Losses: " + losses);
-
-                    //need to make the game reset to right after the document ready function begins
-
-                }
-            }
+            
         }
         
 
