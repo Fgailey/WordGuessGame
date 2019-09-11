@@ -81,9 +81,7 @@ var words = [
         $("#lettersUsed").text(wrongLetters);
     }
     function checkWord(){
-        for (var a = 0; a < letters.length; a++){
-            //this for loop runs through alphabet to check user enty to the allowed chars
-            if (userGuess === letters[a] && guessCounter > 0){
+        
                 for (var i = 0; i < chosenWord.length; i++ ) {
                     var res = chosenWord.charAt(i);
                     if (userGuess === res){
@@ -91,10 +89,10 @@ var words = [
                         $("#blank").text(blanks);
                         console.log(guessCounter);
                     }
-                    
-                }
-                
-            } 
+                    // if (rightLetter === letters[a]){
+                    //     letters.
+                    // }
+               
             
         }
     }
@@ -130,15 +128,27 @@ var words = [
         document.onkeyup = function(event)
         {
             userGuess = event.key;
-            guessCounter -= 1;
-            checkWord();
-            $("#guesses").text(guessCounter);
-            //debugger;
-            finalWord = blanks.join();
-            for(var i = 0; i < finalWord.length; i++){
-                finalWord = finalWord.replace(",","");
+            for (var a = 0; a < letters.length; a++){
+                var rightLetter = letters[a];            
+                //this for loop runs through alphabet to check user enty to the allowed chars
+                if (userGuess === rightLetter && guessCounter > 0){
+                    
+            
+                    checkWord();
+                    //debugger;
+                    guessCounter -= 1;
+                    $("#guesses").text(guessCounter);
+                    wrongLetters.push(userGuess);
+                    $("#lettersUsed").text(wrongLetters);            
+                    finalWord = blanks.join();
+                    for(var i = 0; i < finalWord.length; i++){
+                    finalWord = finalWord.replace(",","");
             }
+
             winLose();
+        }
+                
+    } 
         }
         
 
