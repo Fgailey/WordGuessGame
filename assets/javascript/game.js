@@ -82,33 +82,23 @@ var words = [
     }
     function checkWord(){
         
-                for (var i = 0; i < chosenWord.length; i++ ) {
-                    var res = chosenWord.charAt(i);
-                    if (userGuess === res){
-                        blanks[i] = userGuess;
-                        $("#blank").text(blanks);
-                        console.log(guessCounter);
-                    }
-                    // if (rightLetter === letters[a]){
-                    //     letters.
-                    // }
-               
+            for (var i = 0; i < chosenWord.length; i++ ) {
+                var res = chosenWord.charAt(i);
+                if (userGuess === res){
+                    blanks[i] = userGuess;
+                    $("#blank").text(blanks);
+                    console.log(guessCounter);
+                }
+                // if (rightLetter === letters[a]){
+                //     letters.
+                // }
             
-        }
+        
+            }
     }
-            //might need to add condition that chosenWord is not equal to the blanks
-            
-            
-            // else if(userGuess != res){
-            //     //push the letter to an array that will display the used letters
-            //     wrongLetters.push(userGuess);
-            //     $("#lettersUsed").text(wrongLetters);
-            //     guessCounter -= 1;
-            //     $("#guesses").text("Guesses left:" + guessCounter)
-            //     break;
-            // } 
-                // } 
-            // } 
+
+
+            //compares if the game will end based on these 2 win/loss conditions
     function winLose(){
         if (finalWord === chosenWord){
             console.log(wins);
@@ -120,9 +110,9 @@ var words = [
             $("#losses").text("Losses: " + losses);
             reset();
             //need to make the game reset to right after the document ready function begins
-
         }
     }
+
     gameStart();
     //used to create the blank spots
         document.onkeyup = function(event)
@@ -139,19 +129,33 @@ var words = [
                     guessCounter -= 1;
                     $("#guesses").text(guessCounter);
                     wrongLetters.push(userGuess);
-                    $("#lettersUsed").text(wrongLetters);            
+                    $("#lettersUsed").text(wrongLetters);
+                    
+                    
                     finalWord = blanks.join();
                     for(var i = 0; i < finalWord.length; i++){
-                    finalWord = finalWord.replace(",","");
-            }
-
-            winLose();
-        }
+                        finalWord = finalWord.replace(",","");
+                    }
+                    letters.splice(a,1);
+                }
+                winLose();
                 
-    } 
+            } 
         }
         
-
+    //might need to add condition that chosenWord is not equal to the blanks
+            
+            
+            // else if(userGuess != res){
+            //     //push the letter to an array that will display the used letters
+            //     wrongLetters.push(userGuess);
+            //     $("#lettersUsed").text(wrongLetters);
+            //     guessCounter -= 1;
+            //     $("#guesses").text("Guesses left:" + guessCounter)
+            //     break;
+            // } 
+                // } 
+            // } 
         //Create a key press function to run only when the apha keys are used
         
     //record key pressed by player
