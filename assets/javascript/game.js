@@ -22,6 +22,7 @@ var words = [
     var wrongLetters = [];
     var chosenWordLetters = [];
     var chosenWord = "";
+    var finalWord = "";
     
         //used to reset the game after it has run an initial time
     function reset() {
@@ -38,6 +39,7 @@ var words = [
         guessCounter = 13;
         wrongLetters = [];
         blanks = [];
+        finalWord = "";
         // this will reset the array, the letters are taken out to avoid pressing the same letters multiple times
         letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
@@ -109,7 +111,8 @@ var words = [
         }
     }
     function winLose(){
-        if (blanks === chosenWordLetters){
+        if (finalWord === chosenWord){
+            console.log(wins);
             wins += 1;
             reset();
         }
@@ -130,6 +133,10 @@ var words = [
             checkWord();
             $("guesses").text(guessCounter);
             //debugger;
+            finalWord = blanks.join();
+            for(var i = 0; i < finalWord.length; i++){
+                finalWord = finalWord.replace(",","");
+            }
             winLose();
         }
         
