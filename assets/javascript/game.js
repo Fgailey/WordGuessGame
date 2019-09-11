@@ -95,6 +95,9 @@ var words = [
                 }
                 
             } 
+            
+        }
+    }
             //might need to add condition that chosenWord is not equal to the blanks
             
             
@@ -108,8 +111,6 @@ var words = [
             // } 
                 // } 
             // } 
-        }
-    }
     function winLose(){
         if (finalWord === chosenWord){
             console.log(wins);
@@ -131,7 +132,7 @@ var words = [
             userGuess = event.key;
             guessCounter -= 1;
             checkWord();
-            $("guesses").text(guessCounter);
+            $("#guesses").text(guessCounter);
             //debugger;
             finalWord = blanks.join();
             for(var i = 0; i < finalWord.length; i++){
