@@ -86,33 +86,33 @@ var words = [
         $("#losses").text("Losses: " + losses);
 
         $("#lettersUsed").text(wrongLetters);
-
+        
         if (chosenWord === "athens"){
-            $("#city").attr("src", ".assets/images/athens.jpg");
+            $(".cityImage").attr("src", "./assets/images/athens.jpg");
         }
         if (chosenWord === "atlanta"){
-            $("#city").attr("src", ".assets/images/atlanta.jfif");
+            $(".cityImage").attr("src", "./assets/images/atlanta.jfif");
         }
-        if (chosenWord === "aukland"){
-            $("#city").attr("src", ".assets/images/aukland.jfif");
+        if (chosenWord === "auckland"){
+            $(".cityImage").attr("src", "./assets/images/auckland.jfif");
         }
         if (chosenWord === "dubai"){
-            $("#city").attr("src", ".assets/images/dubai.jpg");
+            $(".cityImage").attr("src", "./assets/images/dubai.jpg");
         }
         if (chosenWord === "jerusalem"){
-            $("#city").attr("src", ".assets/images/jerusalem.jpg");
+            $(".cityImage").attr("src", "./assets/images/jerusalem.jpg");
         }
         if (chosenWord === "london"){
-            $("#city").attr("src", ".assets/images/london.jpg");
+            $(".cityImage").attr("src", "./assets/images/london.jpg");
         }
         if (chosenWord === "seoul"){
-            $("#city").attr("src", ".assets/images/seoul.jpg");
+            $(".cityImage").attr("src", "./assets/images/seoul.jpg");
         }
         if (chosenWord === "sydney"){
-            $("#city").attr("src", ".assets/images/sydney.jpg");
+            $(".cityImage").attr("src", "./assets/images/sydney.jpg");
         }
         if (chosenWord === "venice"){
-            $("#city").attr("src", ".assets/images/venice.jpg");
+            $(".cityImage").attr("src", "./assets/images/venice.jpg");
         }
     }
     function checkWord(){
@@ -134,7 +134,6 @@ var words = [
         if (finalWord === chosenWord){
             console.log(wins);
             wins += 1;
-            debugger;
             reset();
         }
         if(guessCounter === 0 || guessCounter < 0) {
@@ -144,37 +143,37 @@ var words = [
             //need to make the game reset to right after the document ready function begins
         }
     }
-
-    gameStart();
-    //used to create the blank spots
-        document.onkeyup = function(event)
-        {
-            userGuess = event.key;
-            for (var a = 0; a < letters.length; a++){
-                var rightLetter = letters[a];            
-                //this for loop runs through alphabet to check user enty to the allowed chars
-                if (userGuess === rightLetter && guessCounter > 0){
-                    
-            
-                    checkWord();
-                    //debugger;
-                    guessCounter -= 1;
-                    $("#guesses").text(guessCounter);
-                    wrongLetters.push(userGuess);
-                    $("#lettersUsed").text(wrongLetters.join(' '));
-                    
-                    
-                    finalWord = blanks.join();
-                    for(var i = 0; i < finalWord.length; i++){
-                        finalWord = finalWord.replace(",","");
-                    }
-                    letters.splice(a,1);
-                }
+    $(document).ready(function() {
+        gameStart();
+        //used to create the blank spots
+            document.onkeyup = function(event)
+            {
+                userGuess = event.key;
+                for (var a = 0; a < letters.length; a++){
+                    var rightLetter = letters[a];            
+                    //this for loop runs through alphabet to check user enty to the allowed chars
+                    if (userGuess === rightLetter && guessCounter > 0){
+                        
                 
-            } 
-            winLose();
-        }
-        
+                        checkWord();
+                        //debugger;
+                        guessCounter -= 1;
+                        $("#guesses").text(guessCounter);
+                        wrongLetters.push(userGuess);
+                        $("#lettersUsed").text(wrongLetters.join(' '));
+                        
+                        
+                        finalWord = blanks.join();
+                        for(var i = 0; i < finalWord.length; i++){
+                            finalWord = finalWord.replace(",","");
+                        }
+                        letters.splice(a,1);
+                    }
+                    
+                } 
+                winLose();
+            }
+        })
     //might need to add condition that chosenWord is not equal to the blanks
             
             
