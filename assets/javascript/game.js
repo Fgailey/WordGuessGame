@@ -34,23 +34,25 @@ var words = [
         //in random word create a for loop that makes an underlined spot for each letter in word
 
         //this needs to not trigger unless game is over or reset button is pressed
-        var z = Math.floor(Math.random() * words.length);
-        var chosenWord = words[z];
-        console.log(chosenWord);
-        //this will make the letters into an array for later comparison
-        chosenWordLetters = chosenWord.split('');
+        // var z = Math.floor(Math.random() * words.length);
+        // var chosenWord = words[z];
+        // console.log(chosenWord);
+        // //this will make the letters into an array for later comparison
+        // chosenWordLetters = chosenWord.split('');
 
         guessCounter = 13;
         wrongLetters = [];
         blanks = [];
         blanksNS = "";
         finalWord = "";
+        wins = 0;
+        losses = 0;
         // this will reset the array, the letters are taken out to avoid pressing the same letters multiple times
         letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 
         //this will make it so the game can run again, game stops when true
-        gameStatus = false;
+        
         //initialized the game to start after it has been reset
         gameStart();
     }
@@ -134,16 +136,20 @@ var words = [
         if (finalWord === chosenWord){
             console.log(wins);
             wins += 1;
-            reset();
+            gameStart();
         }
         if(guessCounter === 0 || guessCounter < 0) {
             losses += 1;
             $("#losses").text("Losses: " + losses);
-            reset();
+            gameStart();
             //need to make the game reset to right after the document ready function begins
         }
     }
     $(document).ready(function() {
+
+        $("#reset").on("click", function(){
+            reset();
+        })
         gameStart();
         //used to create the blank spots
             document.onkeyup = function(event)
