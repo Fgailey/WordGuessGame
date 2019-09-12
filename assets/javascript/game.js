@@ -1,10 +1,13 @@
 var words = [
-    "atlanta",
-    "baltimore", 
-    "chicago", 
-    "denver",
+    "auckland",
+    "sydney", 
+    "jerusalem", 
+    "venice",
+    "dubai",
     "athens",
-    "auburn",
+    "seoul",
+    "london",
+    "atlanta",
         ]   
 
            
@@ -83,6 +86,34 @@ var words = [
         $("#losses").text("Losses: " + losses);
 
         $("#lettersUsed").text(wrongLetters);
+
+        if (chosenWord === "athens"){
+            $("#city").attr("src", ".assets/images/athens.jpg");
+        }
+        if (chosenWord === "atlanta"){
+            $("#city").attr("src", ".assets/images/atlanta.jfif");
+        }
+        if (chosenWord === "aukland"){
+            $("#city").attr("src", ".assets/images/aukland.jfif");
+        }
+        if (chosenWord === "dubai"){
+            $("#city").attr("src", ".assets/images/dubai.jpg");
+        }
+        if (chosenWord === "jerusalem"){
+            $("#city").attr("src", ".assets/images/jerusalem.jpg");
+        }
+        if (chosenWord === "london"){
+            $("#city").attr("src", ".assets/images/london.jpg");
+        }
+        if (chosenWord === "seoul"){
+            $("#city").attr("src", ".assets/images/seoul.jpg");
+        }
+        if (chosenWord === "sydney"){
+            $("#city").attr("src", ".assets/images/sydney.jpg");
+        }
+        if (chosenWord === "venice"){
+            $("#city").attr("src", ".assets/images/venice.jpg");
+        }
     }
     function checkWord(){
         
