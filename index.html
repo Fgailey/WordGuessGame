@@ -7,29 +7,28 @@
         <title>Document</title>
         <!-- style sheets, first resets page to basic -->
         <link rel="stylesheet" href="./assets/css/reset.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">        <link rel="stylesheet" href="./assets/css/style.css">
         <!-- java script -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="assets/javascript/game.js"></script>
     </head>
     <body>
         <div class="container">
-            <div class="row ">
-                This will be the game title
+            <div class="row justify-content-center">
+                <div class="h1">This will be the game title</div>
             </div>
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col">
                     *Picture of hangman
                 </div> 
                 <div class="col">
-                    <div id="getStarted" class="">Press any key to get started!</div>
-                    <div id="blank"></div>
-                    <div id="wins">Wins:</div>
-                    <div id="losses">Losses:</div>
-                    <div id="guesses">Guesses Left:</div>
-                    <div>Letters Already Guessed</div>
-                    <div id="lettersUsed"></div>
+                    <div id="getStarted" class="text-center">Press any key to get started!</div>
+                    <div id="blank" class="text-center"></div>
+                    <div id="wins" class="text-center">Wins:</div>
+                    <div id="losses" class="text-center">Losses:</div>
+                    <div id="guesses" class="text-center">Guesses Left:</div>
+                    <div class="text-center">Letters Already Guessed</div>
+                    <div id="lettersUsed" class="text-center"></div>
                 </div>
             </div>
             <div class="row">

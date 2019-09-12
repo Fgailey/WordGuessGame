@@ -19,6 +19,7 @@ var words = [
         //this array holds the blanks and replaces them with successes 
     //this array holds the blanks and replaces them with successes 
     var blanks = [];
+    var blanksNS = "";
     var wrongLetters = [];
     var chosenWordLetters = [];
     var chosenWord = "";
@@ -39,6 +40,7 @@ var words = [
         guessCounter = 13;
         wrongLetters = [];
         blanks = [];
+        blanksNS = "";
         finalWord = "";
         // this will reset the array, the letters are taken out to avoid pressing the same letters multiple times
         letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -64,19 +66,21 @@ var words = [
         guessCounter = 13;
         wrongLetters = [];
         blanks = [];
+        blanksNS = "";
         // this will reset the array, the letters are taken out to avoid pressing the same letters multiple times
         letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         
         //this will run through the length of the random word and populate blanks
         for (var x = 0; x < chosenWord.length; x++){
             blanks.push("_");
-            $("#blank").text(blanks);
+            
+            $("#blank").text(blanks.join(' '));
         }
         //changes the reset guesses back to starting value
         $("#guesses").text(guessCounter);
         //updates the wins/losses to current total
-        $("#wins").text("Wins:" + wins);
-        $("#losses").text("Losses:" + losses);
+        $("#wins").text("Wins: " + wins);
+        $("#losses").text("Losses: " + losses);
 
         $("#lettersUsed").text(wrongLetters);
     }
@@ -86,14 +90,10 @@ var words = [
                 var res = chosenWord.charAt(i);
                 if (userGuess === res){
                     blanks[i] = userGuess;
-                    $("#blank").text(blanks);
+                    
+                    $("#blank").text(blanks.join(' '));
                     console.log(guessCounter);
                 }
-                // if (rightLetter === letters[a]){
-                //     letters.
-                // }
-            
-        
             }
     }
 
@@ -103,6 +103,7 @@ var words = [
         if (finalWord === chosenWord){
             console.log(wins);
             wins += 1;
+            debugger;
             reset();
         }
         if(guessCounter === 0 || guessCounter < 0) {
@@ -129,7 +130,7 @@ var words = [
                     guessCounter -= 1;
                     $("#guesses").text(guessCounter);
                     wrongLetters.push(userGuess);
-                    $("#lettersUsed").text(wrongLetters);
+                    $("#lettersUsed").text(wrongLetters.join(' '));
                     
                     
                     finalWord = blanks.join();
@@ -138,9 +139,9 @@ var words = [
                     }
                     letters.splice(a,1);
                 }
-                winLose();
                 
             } 
+            winLose();
         }
         
     //might need to add condition that chosenWord is not equal to the blanks
